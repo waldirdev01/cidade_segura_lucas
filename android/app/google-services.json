@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "849868602067",
+    "project_id": "cidade-segura-a1b39",
+    "storage_bucket": "cidade-segura-a1b39.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:849868602067:android:790905d6e08c199779b226",
+        "android_client_info": {
+          "package_name": "com.br.waldirdev01.cidade_segura"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "849868602067-8h3ikvfkn0je1voe4b7n1lrul2ao99bh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACKSLNUkEgJKWYD5eXUV3Zu1HTPpaR6Fg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "849868602067-8h3ikvfkn0je1voe4b7n1lrul2ao99bh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
