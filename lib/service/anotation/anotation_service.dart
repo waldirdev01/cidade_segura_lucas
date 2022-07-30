@@ -1,8 +1,10 @@
 import 'package:cidade_segura/models/anotation_model.dart';
+import 'package:cidade_segura/models/suspect_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class AnotationService with ChangeNotifier {
+
   // cria uma instância do FirebaseFirestore
   final db = FirebaseFirestore.instance;
 
