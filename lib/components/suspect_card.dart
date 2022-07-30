@@ -1,4 +1,5 @@
 import 'package:cidade_segura/models/suspect_model.dart';
+import 'package:cidade_segura/util/app_routs.dart';
 import 'package:flutter/material.dart';
 
 class SuspectCard extends StatelessWidget {
@@ -7,10 +8,14 @@ class SuspectCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Column(
-        children: [Text(suspect.name), SizedBox(), Text(suspect.userEmail)],
+    return InkWell(
+      child: Card(
+        child: Column(
+          children: [Text(suspect.name), SizedBox(), Text(suspect.userEmail)],
+        ),
       ),
+      onTap: () => Navigator.of(context)
+          .pushNamed(AppRoutes.ANOTATION_FORM, arguments: suspect.id),
     );
   }
 }

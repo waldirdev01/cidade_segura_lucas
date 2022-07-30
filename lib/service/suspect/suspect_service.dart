@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 class SuspectService with ChangeNotifier {
   List<Suspect> _items = [];
 
-
   List<Suspect> get items => [..._items];
 
   int get itemsCount {
@@ -23,10 +22,14 @@ class SuspectService with ChangeNotifier {
   }
 
   Future<List<Suspect>> getSuspects() async {
-    var getRef = await db.collection(Constants.SUSPECT_COLLECTION).get();
+    QuerySnapshot<Map<String, dynamic>> getRef = await db
+        .collection(Constants.SUSPECT_COLLECTION)
+        .orderBy('name', descending: false)
+        .get();
     //recebe os suspeitos
     var suspect = getRef.docs
-        .map((map) => Suspect(id: map.reference.id, userEmail: 'userEmail', name: map['name']))
+        .map((map) => Suspect(
+            id: map.reference.id, userEmail: 'userEmail', name: map['name']))
         .toList();
     _items = suspect;
     notifyListeners();

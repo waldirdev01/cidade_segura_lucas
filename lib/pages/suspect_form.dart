@@ -1,8 +1,5 @@
 import 'dart:math';
-
-import 'package:cidade_segura/models/anotation_model.dart';
 import 'package:cidade_segura/models/suspect_model.dart';
-import 'package:cidade_segura/service/anotation/anotation_service.dart';
 import 'package:cidade_segura/service/suspect/suspect_service.dart';
 import 'package:cidade_segura/util/app_routs.dart';
 import 'package:flutter/material.dart';
@@ -35,8 +32,7 @@ class _SuspectFormState extends State<SuspectForm> {
     try {
       await Provider.of<SuspectService>(context, listen: false)
           .addSuspect(suspect);
-
-      Navigator.of(context).pushReplacementNamed(AppRoutes.HOME, arguments: suspect);
+      Navigator.of(context).pushReplacementNamed(AppRoutes.HOME,);
     } catch (error) {
       print('Aqui');
       print(error);
@@ -68,8 +64,9 @@ class _SuspectFormState extends State<SuspectForm> {
           child: Column(
             children: [
               TextFormField(
+                textCapitalization: TextCapitalization.words,
                 controller: nameController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Nome do suspeitos',
                 ),
               ),

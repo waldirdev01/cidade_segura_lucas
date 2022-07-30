@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class AnotationForm extends StatefulWidget {
-  const AnotationForm({Key? key,}) : super(key: key);
+  AnotationForm({Key? key, required this.suspectId,}) : super(key: key);
+  String suspectId;
 
 
   @override
@@ -26,9 +27,11 @@ class _AnotationFormState extends State<AnotationForm> {
         dateTime: DateTime.now(),
         userEmail: 'userEmail',
         anotation: anotationController.text,
-        suspectId: 'suspectId');
+        suspectId: widget.suspectId);
 
     try {
+      print(widget.suspectId);
+      print('Aqui no anotation');
       await Provider.of<AnotationService>(context, listen: false).addAnotation(anotation);
 
       Navigator.of(context).pop();
@@ -56,6 +59,7 @@ class _AnotationFormState extends State<AnotationForm> {
 
   @override
   Widget build(BuildContext context) {
+    final suspectId = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(15),
@@ -70,7 +74,11 @@ class _AnotationFormState extends State<AnotationForm> {
                 ),
 
               ),
-              ElevatedButton(onPressed: _submitForm, child: Icon(Icons.add))
+              ElevatedButton(onPressed: (){
+                widget.suspectId = suspectId;
+                _submitForm();
+              }
+                  , child: Icon(Icons.add))
             ],
           ),
         ),
