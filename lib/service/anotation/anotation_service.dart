@@ -4,6 +4,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class AnotationService with ChangeNotifier {
+  List<Anotation> _items = [];
+
+  List<Anotation> get items => [..._items];
+
+  int get itemsCount {
+    return _items.length;
+  }
 
   // cria uma instância do FirebaseFirestore
   final db = FirebaseFirestore.instance;
@@ -24,8 +31,9 @@ class AnotationService with ChangeNotifier {
         anotation: map['anotation'],
         suspectId: map['suspectId']))
         .toList();
+    _items = anotations;
     notifyListeners();
-    return anotations;
+    return _items;
     //pega o que vem do DB e converte em uma lista de anotações para o app
   }
 }

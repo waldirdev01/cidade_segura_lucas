@@ -1,4 +1,5 @@
 import 'package:cidade_segura/pages/anotation_form.dart';
+import 'package:cidade_segura/pages/anotations_page.dart';
 import 'package:cidade_segura/pages/home_page.dart';
 import 'package:cidade_segura/pages/suspect_form.dart';
 import 'package:cidade_segura/service/anotation/anotation_service.dart';
@@ -32,7 +33,8 @@ class CidadeSegura extends StatelessWidget {
         routes: {
           AppRoutes.HOME: (context) => HomePage(),
           AppRoutes.SUSPECT_FORM: (context) => SuspectForm(),
-          AppRoutes.ANOTATION_FORM: (context) => AnotationForm(suspectId: '',),
+          AppRoutes.ANOTATION_FORM: (context) => AnotationForm(suspect: null,),
+          AppRoutes.ANOTATION_PAGE: (context) => AnotationsPage(suspectId: '',),
         },
       ),
     );

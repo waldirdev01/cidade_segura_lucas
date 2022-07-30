@@ -1,12 +1,18 @@
 import 'package:cidade_segura/models/anotation_model.dart';
+import 'package:cidade_segura/models/suspect_model.dart';
+import 'package:cidade_segura/pages/anotations_page.dart';
 import 'package:cidade_segura/service/anotation/anotation_service.dart';
+import 'package:cidade_segura/service/suspect/suspect_service.dart';
+import 'package:cidade_segura/util/app_routs.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class AnotationForm extends StatefulWidget {
-  AnotationForm({Key? key, required this.suspectId,}) : super(key: key);
-  String suspectId;
-
+  AnotationForm({
+    Key? key,
+    required this.suspect,
+  }) : super(key: key);
+  Suspect? suspect;
 
   @override
   State<AnotationForm> createState() => _AnotationFormState();
@@ -21,36 +27,35 @@ class _AnotationFormState extends State<AnotationForm> {
 
   final anotationController = TextEditingController();
 
-
   Future<void> _submitForm() async {
-   final anotation = Anotation(id: 'id',
+    final anotation = Anotation(
+        id: 'id',
         dateTime: DateTime.now(),
         userEmail: 'userEmail',
         anotation: anotationController.text,
-        suspectId: widget.suspectId);
+        suspectId: widget.suspect!.id);
 
     try {
-      print(widget.suspectId);
       print('Aqui no anotation');
-      await Provider.of<AnotationService>(context, listen: false).addAnotation(anotation);
-
-      Navigator.of(context).pop();
+      await Provider.of<AnotationService>(context, listen: false)
+          .addAnotation(anotation);
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => AnotationsPage(suspectId: widget.suspect!.id)));
     } catch (error) {
       print('Aqui');
       print(error);
       await showDialog<void>(
         context: context,
-        builder: (ctx) =>
-            AlertDialog(
-              title: Text('Ocorreu um erro!'),
-              content: Text('Ocorreu um erro para salvar o produto.'),
-              actions: [
-                TextButton(
-                  child: Text('Ok'),
-                  onPressed: () => Navigator.of(context).pop(),
-                ),
-              ],
+        builder: (ctx) => AlertDialog(
+          title: Text('Ocorreu um erro!'),
+          content: Text('Ocorreu um erro para salvar o produto.'),
+          actions: [
+            TextButton(
+              child: Text('Ok'),
+              onPressed: () => Navigator.of(context).pop(),
             ),
+          ],
+        ),
       );
     } finally {
       setState(() => _isLoading = false);
@@ -59,7 +64,6 @@ class _AnotationFormState extends State<AnotationForm> {
 
   @override
   Widget build(BuildContext context) {
-    final suspectId = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(15),
@@ -72,13 +76,12 @@ class _AnotationFormState extends State<AnotationForm> {
                 decoration: InputDecoration(
                   labelText: 'Anotação',
                 ),
-
               ),
-              ElevatedButton(onPressed: (){
-                widget.suspectId = suspectId;
-                _submitForm();
-              }
-                  , child: Icon(Icons.add))
+              ElevatedButton(
+                  onPressed: () {
+                    _submitForm();
+                  },
+                  child: Icon(Icons.add))
             ],
           ),
         ),
