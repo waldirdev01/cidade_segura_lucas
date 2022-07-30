@@ -40,7 +40,9 @@ class _AnotationFormState extends State<AnotationForm> {
       await Provider.of<AnotationService>(context, listen: false)
           .addAnotation(anotation);
       Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => AnotationsPage(suspectId: widget.suspect!.id)));
+          builder: (context) => AnotationsPage(
+                suspectId: widget.suspect?.id,
+              )));
     } catch (error) {
       print('Aqui');
       print(error);

@@ -4,17 +4,27 @@ import 'package:cidade_segura/util/app_routs.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
-  Future<void> _refreshSuspects(BuildContext context) {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  Future<void> _loadedSuspects(BuildContext context) {
     return Provider.of<SuspectService>(context, listen: false).getSuspects();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadedSuspects(context);
   }
 
   @override
   Widget build(BuildContext context) {
     final SuspectService suspects = Provider.of(context);
-    _refreshSuspects(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Home Page'),

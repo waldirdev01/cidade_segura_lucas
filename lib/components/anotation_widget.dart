@@ -5,20 +5,20 @@ class AnotationWidget extends StatelessWidget {
   const AnotationWidget(
       {Key? key,
         required this.dateTime,
-        required this.suspectName,
+        required this.suspectId,
         required this.appUserEmail})
       : super(key: key);
   final String appUserEmail;
-  final String suspectName;
+  final String suspectId;
   final DateTime dateTime;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Row(
+      child: Column(
         children: [
           Text(appUserEmail),
-          Text(suspectName),
+          Text(suspectId),
           Text(DateFormat('dd/MM/yyyy - hh:MM:ss').format(dateTime)),
         ],
       ),
