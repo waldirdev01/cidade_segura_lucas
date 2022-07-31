@@ -36,7 +36,6 @@ class _AnotationFormState extends State<AnotationForm> {
         suspectId: widget.suspect!.id);
 
     try {
-      print('Aqui no anotation');
       await Provider.of<AnotationService>(context, listen: false)
           .addAnotation(anotation);
       Navigator.of(context).push(MaterialPageRoute(
@@ -44,13 +43,11 @@ class _AnotationFormState extends State<AnotationForm> {
                 suspectId: widget.suspect?.id,
               )));
     } catch (error) {
-      print('Aqui');
-      print(error);
       await showDialog<void>(
         context: context,
         builder: (ctx) => AlertDialog(
           title: Text('Ocorreu um erro!'),
-          content: Text('Ocorreu um erro para salvar o produto.'),
+          content: Text('Ocorreu um erro para salvar a anotação'),
           actions: [
             TextButton(
               child: Text('Ok'),

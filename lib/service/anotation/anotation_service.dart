@@ -15,21 +15,23 @@ class AnotationService with ChangeNotifier {
   // cria uma instância do FirebaseFirestore
   final db = FirebaseFirestore.instance;
 
-  addAnotation(Anotation anotation) {
+  addAnotation(Anotation anotation) async {
     //adiciona uma anotação no Firebase
-    db.collection('anotações').add(anotation.toFirebase());
+    await db.collection('anotações').add(anotation.toFirebase());
   }
 
   Future<List<Anotation>> getAnotations() async {
-    var getRef = await db.collection('anotações').get();
+    var getRef = await db
+        .collection('anotações')
+        .get();
     //recebe as anotações
     var anotations = getRef.docs
         .map((map) => Anotation(
-        id: map.reference.id,
-        dateTime: DateTime.now(),
-        userEmail: map['userEmail'],
-        anotation: map['anotation'],
-        suspectId: map['suspectId']))
+            id: map.reference.id,
+            dateTime: DateTime.parse(map['dateTime']),
+            userEmail: map['userEmail'],
+            anotation: map['anotation'],
+            suspectId: map['suspectId']))
         .toList();
     _items = anotations;
     notifyListeners();
