@@ -11,6 +11,7 @@ class Anotation  {
 
 //Map para enviar dados para o Firebase
   Map<String, Object> toFirebase() {
+    dateTime = DateTime.now();
     return {
       'anotation': anotation,
       'userEmail': userEmail,

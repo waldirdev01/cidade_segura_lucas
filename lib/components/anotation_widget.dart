@@ -19,7 +19,7 @@ class AnotationWidget extends StatelessWidget {
         children: [
           Text(appUserEmail),
           Text(suspectId),
-          Text(DateFormat('dd/MM/yyyy - hh:MM:ss').format(dateTime)),
+          Text(DateFormat('dd/MM/yyyy - HH:mm:ss').format(dateTime))
         ],
       ),
     );

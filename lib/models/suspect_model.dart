@@ -14,11 +14,4 @@ class Suspect {
       'userEmail': userEmail,
     };
   }
-  Map<String, Object> anotationToFirebase() {
-    return {
-      'anotacoes': anotacoes!.toList(),
-    };
-  }
-
-
 }

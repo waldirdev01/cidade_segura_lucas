@@ -21,17 +21,16 @@ class AnotationService with ChangeNotifier {
   }
 
   Future<List<Anotation>> getAnotations() async {
-    var getRef = await db
-        .collection('anotações')
-        .get();
+    var getRef = await db.collection('anotações').orderBy('dateTime').get();
     //recebe as anotações
     var anotations = getRef.docs
         .map((map) => Anotation(
-            id: map.reference.id,
-            dateTime: DateTime.parse(map['dateTime']),
-            userEmail: map['userEmail'],
-            anotation: map['anotation'],
-            suspectId: map['suspectId']))
+              id: map.reference.id,
+              userEmail: map['userEmail'],
+              anotation: map['anotation'],
+              suspectId: map['suspectId'],
+              dateTime: DateTime.parse(map['dateTime']),
+            ))
         .toList();
     _items = anotations;
     notifyListeners();

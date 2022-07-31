@@ -5,6 +5,7 @@ import 'package:cidade_segura/service/anotation/anotation_service.dart';
 import 'package:cidade_segura/service/suspect/suspect_service.dart';
 import 'package:cidade_segura/util/app_routs.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class AnotationsPage extends StatefulWidget {
@@ -47,9 +48,10 @@ class _AnotationsPageState extends State<AnotationsPage> {
           itemBuilder: (context, index) => Padding(
             padding: const EdgeInsets.all(8.0),
             child: AnotationWidget(
-                dateTime: anotacoesDoSuspeito[index].dateTime,
+               dateTime: anotacoesDoSuspeito[index].dateTime,
                 suspectId: anotacoesDoSuspeito[index].suspectId,
                 appUserEmail: anotacoesDoSuspeito[index].userEmail),
+
           ),
         ),
       ),
