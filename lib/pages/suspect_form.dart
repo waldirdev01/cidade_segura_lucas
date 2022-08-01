@@ -27,7 +27,9 @@ class _SuspectFormState extends State<SuspectForm> {
     final suspect = Suspect(
         id: Random().nextDouble().toString(),
         userEmail: 'userEmail',
-        name: nameController.text);
+        name: nameController.text,
+      urlImage: ['url1', 'url2', 'url3', 'url4', ]
+    );
 
     try {
       await Provider.of<SuspectService>(context, listen: false)

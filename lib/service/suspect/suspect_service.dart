@@ -6,7 +6,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class SuspectService with ChangeNotifier {
-
   List<Suspect> _items = [];
 
   List<Suspect> get items => [..._items];
@@ -31,12 +30,14 @@ class SuspectService with ChangeNotifier {
     //recebe os suspeitos
     var suspect = getRef.docs
         .map((map) => Suspect(
-            id: map.reference.id, userEmail: 'userEmail', name: map['name']))
+            id: map.reference.id,
+            userEmail: 'userEmail',
+            name: map['name'],
+            urlImage: (map['urlImage']) as List<dynamic>))
         .toList();
     _items = suspect;
     notifyListeners();
     return _items;
     //pega o que vem do DB e converte em uma lista de suspeitos para o app
   }
-
 }

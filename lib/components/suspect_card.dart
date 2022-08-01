@@ -12,7 +12,17 @@ class SuspectCard extends StatelessWidget {
     return InkWell(
       child: Card(
         child: Column(
-          children: [Text(suspect.name), SizedBox(), Text(suspect.userEmail)],
+          children: [
+            Text(suspect.name),
+            SizedBox(),
+            Text(suspect.userEmail),
+            Container(
+              height: suspect.urlImage.length * 20,
+              child: ListView(
+                children: suspect.urlImage.map((url) => Text(url)).toList(),
+              ),
+            )
+          ],
         ),
       ),
       onTap: () => Navigator.of(context).push(MaterialPageRoute(
