@@ -1,3 +1,4 @@
+import 'package:cidade_segura/components/custom_page.dart';
 import 'package:cidade_segura/components/suspect_card.dart';
 import 'package:cidade_segura/service/suspect/suspect_service.dart';
 import 'package:cidade_segura/util/app_routs.dart';
@@ -25,10 +26,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final SuspectService suspects = Provider.of(context);
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Home Page'),
-      ),
+    return CustomPage(
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView.builder(
@@ -39,7 +37,7 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).pushReplacementNamed(AppRoutes.SUSPECT_FORM);
+          Navigator.of(context).pushReplacementNamed(AppRoutes.GETIMAGEFACE);
         },
         child: Icon(Icons.person_add),
       ),

@@ -1,5 +1,5 @@
 import 'package:cidade_segura/models/suspect_model.dart';
-import 'package:cidade_segura/pages/anotation_form.dart';
+import 'package:cidade_segura/components/anotation_form.dart';
 import 'package:cidade_segura/util/app_routs.dart';
 import 'package:flutter/material.dart';
 
