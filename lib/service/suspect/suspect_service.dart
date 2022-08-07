@@ -31,7 +31,7 @@ class SuspectService with ChangeNotifier {
     var suspect = getRef.docs
         .map((map) => Suspect(
             id: map.reference.id,
-            userEmail: 'userEmail',
+            userEmail: map['userEmail'],
             name: map['name'],
             urlImage: (map['urlImage']) as List<dynamic>))
         .toList();

@@ -30,9 +30,10 @@ class _SuspectFormCadastroState extends State<SuspectFormCadastro> {
   bool _isLoading = false;
 
   Future<void> _submitForm() async {
+
     final suspect = Suspect(
         id: Random().nextDouble().toString(),
-        userEmail: 'userEmail',
+        userEmail: 'user',
         name: nameController.text,
         urlImage: ['url1', 'url2', 'url3', 'url4', ]
     );
@@ -92,6 +93,7 @@ class _SuspectFormCadastroState extends State<SuspectFormCadastro> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     TextFormField(
+                      controller: nameController,
                       showCursor: true,
                       cursorColor: Colors.black,
                       textCapitalization: TextCapitalization.words,
@@ -125,10 +127,9 @@ class _SuspectFormCadastroState extends State<SuspectFormCadastro> {
                         }
                         return null;
                       },
-                    /*  onSaved: (name) {
-                        _formData[kName] = name ?? '';
-                        _formData['imageUrl'] = imagemBaixada;
-                      },*/
+                      onSaved: (name) {
+                        nameController.text = name ?? '';
+                      },
                     ),
                     const Divider(),
 

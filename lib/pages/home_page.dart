@@ -27,13 +27,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final SuspectService suspects = Provider.of(context);
     return CustomPage(
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ListView.builder(
-          itemCount: suspects.itemsCount,
-          itemBuilder: (context, index) =>
-              SuspectCard(suspect: suspects.items[index]),
-        ),
+      body: ListView.builder(
+        itemCount: suspects.itemsCount,
+        itemBuilder: (context, index) =>
+            SuspectCard(suspect: suspects.items[index]),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
